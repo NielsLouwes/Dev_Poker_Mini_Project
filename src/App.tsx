@@ -133,7 +133,14 @@ export default function App() {
         </LeftWrapper>
         <RightWrapper>
           <p>{selectedScore && selectedScore.title}</p>
-          <input type="text"></input>
+
+          <select>
+            {cards.map((card) => (
+              <option key={card.id} card={card.title}>
+                {card.title}
+              </option>
+            ))}
+          </select>
         </RightWrapper>
       </OuterWrapper>
     </Styled>

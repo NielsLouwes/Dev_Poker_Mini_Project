@@ -76,6 +76,13 @@ const cards = [
 
 const Styled = styled.div``;
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 40vw;
+  border: 1px solid red;
+  justify-content: space-around;
+`;
+
 const OuterWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -104,6 +111,19 @@ const Card = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+`;
+
+const PlayerScore = styled.p`
+  padding: 15px;
+`;
+
+const Dropdown = styled.select`
+  margin-left: 15px;
+`;
+
+const Button = styled.button`
+  margin-right: 15px;
 `;
 
 // type Card = {
@@ -132,15 +152,17 @@ export default function App() {
           ))}
         </LeftWrapper>
         <RightWrapper>
-          <p>{selectedScore && selectedScore.title}</p>
-
-          <select>
-            {cards.map((card) => (
-              <option key={card.id} card={card.title}>
-                {card.title}
-              </option>
-            ))}
-          </select>
+          <PlayerScore>{selectedScore && selectedScore.title}</PlayerScore>
+          <Wrapper>
+            <Dropdown>
+              {cards.map((card) => (
+                <option key={card.id} card={card.title}>
+                  {card.title}
+                </option>
+              ))}
+            </Dropdown>
+            <Button>Submit Score</Button>
+          </Wrapper>
         </RightWrapper>
       </OuterWrapper>
     </Styled>

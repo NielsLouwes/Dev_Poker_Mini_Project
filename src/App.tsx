@@ -1,78 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-
-const cards = [
-  {
-    id: 1,
-    title: 0,
-    score: 0
-  },
-  {
-    id: 2,
-    title: 0.5,
-    score: 0.5
-  },
-  {
-    id: 3,
-    title: 1,
-    score: 1
-  },
-  {
-    id: 4,
-    title: 2,
-    score: 2
-  },
-  {
-    id: 5,
-    title: 3,
-    score: 3
-  },
-  {
-    id: 6,
-    title: 5,
-    score: 5
-  },
-  {
-    id: 7,
-    title: 8,
-    score: 8
-  },
-  {
-    id: 8,
-    title: 10,
-    score: 10
-  },
-  {
-    id: 9,
-    title: 13,
-    score: 13
-  },
-  {
-    id: 10,
-    title: 20,
-    score: 20
-  },
-  {
-    id: 11,
-    title: 40,
-    score: 40
-  },
-  {
-    id: 12,
-    title: 100,
-    score: 100
-  },
-  {
-    id: 13,
-    title: "?",
-    score: null
-  },
-  {
-    id: 14,
-    title: "coffee",
-    score: null
-  }
-];
+import { Cards } from "./Data/Data";
 
 const Styled = styled.div``;
 
@@ -100,7 +28,7 @@ const LeftWrapper = styled.div`
 const RightWrapper = styled.div`
   width: 45vw;
   border: 1px solid red;
-  height: 100vh;
+  height: 60vh;
   margin-right: 15px;
 `;
 
@@ -136,7 +64,7 @@ export default function App() {
   const [selectedScore, setSelectedScore] = useState({});
 
   function selectScore(id) {
-    const findScore = cards?.find((item) => id === item.id);
+    const findScore = Cards?.find((item) => id === item.id);
     setSelectedScore(findScore);
   }
 
@@ -145,7 +73,7 @@ export default function App() {
       <h1>Dev Poker</h1>
       <OuterWrapper>
         <LeftWrapper>
-          {cards.map((item) => (
+          {Cards.map((item) => (
             <Card {...item} key={item.id} onClick={() => selectScore(item.id)}>
               {item.title}
             </Card>
@@ -155,7 +83,7 @@ export default function App() {
           <PlayerScore>{selectedScore && selectedScore.title}</PlayerScore>
           <Wrapper>
             <Dropdown>
-              {cards.map((card) => (
+              {Cards.map((card) => (
                 <option key={card.id} card={card.title}>
                   {card.title}
                 </option>

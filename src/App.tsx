@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Cards } from "./Data/Data";
+import { Modal } from "react-bootstrap";
 
 const Styled = styled.div``;
 
@@ -21,7 +22,6 @@ const LeftWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px 10px;
-  height: 80vh;
   margin-left: 15px;
 `;
 
@@ -63,7 +63,7 @@ const Button = styled.button`
 export default function App() {
   const [selectedScore, setSelectedScore] = useState({});
 
-  function selectScore(id) {
+  function selectScore(id: number) {
     const findScore = Cards?.find((item) => id === item.id);
     setSelectedScore(findScore);
   }
@@ -71,6 +71,15 @@ export default function App() {
   return (
     <Styled>
       <h1>Dev Poker</h1>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        Sign in
+      </button>
+      <Modal />
       <OuterWrapper>
         <LeftWrapper>
           {Cards.map((item) => (
@@ -80,10 +89,11 @@ export default function App() {
           ))}
         </LeftWrapper>
         <RightWrapper>
+          <p>Players</p>
           <PlayerScore>{selectedScore && selectedScore.title}</PlayerScore>
           <Wrapper>
             <Dropdown>
-              {Cards.map((card) => (
+              {Cards.map((card: any) => (
                 <option key={card.id} card={card.title}>
                   {card.title}
                 </option>
